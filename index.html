@@ -3,106 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZEEL Document Storage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Minimal Login</title>
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --card-bg: #f8f9fa;
-            --header-bg: #ffffff;
-            --border-color: #e0e0e0;
-            --accent-color: #4285f4;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #f0f0f0;
-            --card-bg: #2d2d2d;
-            --header-bg: #2d2d2d;
-            --border-color: #444444;
-            --accent-color: #8ab4f8;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        header {
-            background-color: var(--header-bg);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 12px 0;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 5px;
-        }
-
-        .theme-toggle:hover, .theme-toggle:focus {
-            background-color: var(--card-bg);
-            outline: none;
-        }
-
-        /* Login Screen Styles */
-        .login-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 80px);
+            min-height: 100vh;
             background-color: #f5f5f5;
             overflow: hidden;
         }
 
-        [data-theme="dark"] .login-container {
-            background-color: #1a1a1a;
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
         }
 
         .login-box {
-            background: var(--header-bg);
+            background: white;
             border-radius: 12px;
             padding: 40px 35px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -111,8 +38,6 @@
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
-            width: 100%;
-            max-width: 420px;
         }
 
         .login-header {
@@ -121,7 +46,7 @@
         }
 
         .login-header h2 {
-            color: var(--text-color);
+            color: #222;
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 8px;
@@ -129,8 +54,7 @@
         }
 
         .login-header p {
-            color: var(--text-color);
-            opacity: 0.7;
+            color: #666;
             font-size: 15px;
         }
 
@@ -142,19 +66,19 @@
         .input-group input {
             width: 100%;
             padding: 16px 20px;
-            border: 1.5px solid var(--border-color);
-            background: var(--card-bg);
+            border: 1.5px solid #e0e0e0;
+            background: #fafafa;
             border-radius: 8px;
             outline: none;
             font-size: 15px;
             transition: all 0.3s ease;
-            color: var(--text-color);
+            color: #222;
         }
 
         .input-group input:focus {
-            background: var(--bg-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+            background: white;
+            border-color: #222;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
         }
 
         .input-group label {
@@ -162,11 +86,10 @@
             top: 50%;
             left: 20px;
             transform: translateY(-50%);
-            color: var(--text-color);
-            opacity: 0.7;
+            color: #888;
             pointer-events: none;
             transition: all 0.3s ease;
-            background: var(--header-bg);
+            background: white;
             padding: 0 5px;
         }
 
@@ -174,15 +97,58 @@
         .input-group input:valid + label {
             top: 0;
             font-size: 13px;
-            color: var(--accent-color);
+            color: #222;
             font-weight: 500;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .remember-forgot input {
+            margin-right: 8px;
+            accent-color: #222;
+        }
+
+        .remember-forgot a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .remember-forgot a:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #222;
+            transition: width 0.3s ease;
+        }
+
+        .remember-forgot a:hover:after {
+            width: 100%;
         }
 
         .login-btn {
             width: 100%;
             padding: 16px;
             border: none;
-            background: var(--accent-color);
+            background: #222;
             color: white;
             border-radius: 8px;
             font-size: 16px;
@@ -194,7 +160,7 @@
         }
 
         .login-btn:hover {
-            background: #3367d6;
+            background: red;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -221,11 +187,34 @@
             animation: ripple 1s ease-out;
         }
 
-        .error-message {
-            color: #ff5252;
+        .signup-link {
             text-align: center;
-            margin-top: 10px;
-            display: none;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .signup-link a:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #222;
+            transition: width 0.3s ease;
+        }
+
+        .signup-link a:hover:after {
+            width: 100%;
         }
 
         .floating-elements {
@@ -242,10 +231,6 @@
             background: rgba(0, 0, 0, 0.03);
             border-radius: 50%;
             animation: float 20s infinite linear;
-        }
-
-        [data-theme="dark"] .floating-element {
-            background: rgba(255, 255, 255, 0.03);
         }
 
         .floating-element:nth-child(1) {
@@ -321,396 +306,95 @@
             }
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            display: none;
-            padding: 20px 0;
-        }
-
-        .gallery-header {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            width: 100%;
-            font-size: 1rem;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .document-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .document-card:hover, .document-card:focus-within {
-            transform: translateY(-5px);
-        }
-
-        .thumbnail-container {
-            width: 100%;
-            height: 140px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f0f0;
-            position: relative;
-        }
-
-        [data-theme="dark"] .thumbnail-container {
-            background-color: #3a3a3a;
-        }
-
-        .pdf-thumbnail {
-            background: linear-gradient(135deg, #ff5e5e, #ff9d5e);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .pdf-icon {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-        }
-
-        .pdf-text {
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .thumbnail {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .file-badge {
+        .success-message {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-size: 0.6rem;
-            font-weight: 600;
-        }
-
-        .document-info {
-            padding: 12px;
-        }
-
-        .document-name {
-            font-size: 0.85rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .document-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 8px;
-            border-radius: 6px;
-            min-height: 44px;
-        }
-
-        .action-btn:hover, .action-btn:focus {
-            background-color: var(--bg-color);
-            outline: none;
-        }
-
-        .tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 10;
-        }
-
-        .document-card:hover .tooltip {
-            opacity: 1;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .modal-content {
-            width: 95%;
-            height: 80%;
-            background-color: var(--bg-color);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            display: none;
-        }
-
-        .pdf-viewer {
-            width: 100%;
-            height: 100%;
-            border: none;
             background: white;
-            display: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            z-index: 10;
         }
 
-        .pdf-error {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            color: var(--text-color);
+        .success-message.active {
+            transform: translateY(0);
         }
 
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: #222;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            z-index: 1001;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s ease 0.3s both;
         }
 
-        .modal-info {
-            color: white;
-            margin-top: 20px;
+        .success-icon::after {
+            content: '';
+            width: 25px;
+            height: 12px;
+            border: 3px solid white;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            margin-top: -3px;
+        }
+
+        .success-message h3 {
+            color: #222;
+            margin-bottom: 10px;
+            font-size: 22px;
+            animation: fadeIn 0.5s ease 0.5s both;
+        }
+
+        .success-message p {
+            color: #666;
             text-align: center;
-            width: 100%;
+            padding: 0 20px;
+            animation: fadeIn 0.5s ease 0.7s both;
         }
 
-        .download-full {
-            margin-top: 15px;
-            padding: 12px 20px;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            min-height: 44px;
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
         }
 
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-size: 0.85rem;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-color);
-            opacity: 0.7;
-            grid-column: 1 / -1;
-        }
-
-        .file-type-filter {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        /* Mobile-specific styles */
         @media (max-width: 480px) {
             .container {
-                padding: 0 12px;
-            }
-            
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 12px;
-            }
-            
-            .thumbnail-container {
-                height: 120px;
-            }
-            
-            .document-info {
-                padding: 10px;
-            }
-            
-            .action-btn {
-                font-size: 0.7rem;
-                padding: 4px 6px;
-            }
-            
-            .modal-content {
-                height: 70%;
+                padding: 15px;
             }
             
             .login-box {
-                margin: 20px auto;
-                padding: 25px 16px;
+                padding: 30px 25px;
             }
-        }
-
-        @media (max-width: 360px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .logo {
-                font-size: 1.1rem;
-            }
-            
-            .theme-toggle span:last-child {
-                display: none;
-            }
-        }
-
-        /* Touch device optimizations */
-        @media (hover: none) {
-            .document-card:hover {
-                transform: none;
-            }
-            
-            .tooltip {
-                display: none;
-            }
-            
-            .action-btn:hover {
-                background-color: transparent;
-            }
-            
-            .action-btn:active {
-                background-color: var(--bg-color);
-            }
-            
-            .document-card:active {
-                transform: scale(0.98);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            input, select, textarea {
-                font-size: 16px !important;
-            }
-        }
-
-        .modal-content {
-            touch-action: pan-y pinch-zoom;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">ZEEL Document Storage</div>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <div class="login-container" id="loginContainer">
+    <div class="container">
         <div class="floating-elements">
             <div class="floating-element"></div>
             <div class="floating-element"></div>
@@ -721,401 +405,128 @@
         
         <div class="login-box">
             <div class="login-header">
-                <h2>ZEEL Document Storage</h2>
-                <p>Enter passcode to access your documents</p>
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue to your account</p>
             </div>
             
             <form id="loginForm">
                 <div class="input-group">
-                    <input type="password" id="passcodeInput" required maxlength="4" inputmode="numeric">
-                    <label for="passcodeInput">Passcode</label>
+                    <input type="text" id="username" required>
+                    <label for="username">Username</label>
                 </div>
                 
-                <button type="submit" class="login-btn" id="submitBtn">Access Documents</button>
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label for="password">Password</label>
+                </div>
                 
-                <div class="error-message" id="errorMessage">Incorrect passcode. Please try again.</div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#">Sign Up</a>
+                </div>
             </form>
+            
+            <div class="success-message" id="successMessage">
+                <div class="success-icon"></div>
+                <h3>Login Successful!</h3>
+                <p>Welcome back to your account</p>
+            </div>
         </div>
     </div>
-
-    <div class="container">
-        <section class="main-content" id="mainContent">
-            <div class="gallery-header">
-                <h2>Your Documents</h2>
-                <input type="text" class="search-box" id="searchBox" placeholder="Search documents..." aria-label="Search documents">
-            </div>
-            <div class="file-type-filter" id="fileTypeFilter">
-                <button class="filter-btn active" data-filter="all">All Files</button>
-                <button class="filter-btn" data-filter="image">Images</button>
-                <button class="filter-btn" data-filter="pdf">PDFs</button>
-            </div>
-            <div class="gallery" id="gallery">
-                <!-- Documents will be dynamically added here -->
-            </div>
-        </section>
-    </div>
-
-    <div class="modal" id="imageModal">
-        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-        <div class="modal-content">
-            <img class="modal-img" id="modalImg" src="" alt="">
-            <iframe class="pdf-viewer" id="pdfViewer" src=""></iframe>
-            <div class="pdf-error" id="pdfError">
-                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; color: #ff6b6b;"></i>
-                <h3>File Not Available</h3>
-                <p>The file cannot be displayed in the browser.</p>
-                <p>Please use the "Download Original" button to view the file.</p>
-            </div>
-        </div>
-        <div class="modal-info">
-            <div id="modalFileName"></div>
-            <button class="download-full" id="modalDownload">Download Original</button>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>ZEEL Document Storage &copy; 2023 | Secure private document storage</p>
-        </div>
-    </footer>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const themeText = document.getElementById('themeText');
-        const body = document.body;
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            body.setAttribute('data-theme', 'dark');
-            themeIcon.textContent = '☀️';
-            themeText.textContent = 'Light Mode';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Dark Mode';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light Mode';
-            }
-        });
-
-        // Passcode authentication
-        const CORRECT_PASSCODE = '9335';
-        const loginContainer = document.getElementById('loginContainer');
-        const mainContent = document.getElementById('mainContent');
-        const passcodeInput = document.getElementById('passcodeInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const errorMessage = document.getElementById('errorMessage');
-        const loginForm = document.getElementById('loginForm');
-
-        // Add focus effect to inputs
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const successMessage = document.getElementById('successMessage');
             
-            input.addEventListener('blur', function() {
-                if (this.value === '') {
-                    this.parentElement.classList.remove('focused');
+            // Add focus effect to inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+                
+                // Check if input has value on page load
+                if (input.value !== '') {
+                    input.parentElement.classList.add('focused');
                 }
             });
             
-            // Check if input has value on page load
-            if (input.value !== '') {
-                input.parentElement.classList.add('focused');
-            }
-        });
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if (passcodeInput.value === CORRECT_PASSCODE) {
-                loginContainer.style.display = 'none';
-                mainContent.style.display = 'block';
-                loadDocuments();
-            } else {
-                errorMessage.style.display = 'block';
-                passcodeInput.parentElement.style.animation = 'shake 0.5s';
+            // Form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple validation
+                if (username.trim() === '' || password.trim() === '') {
+                    // Add shake animation to empty fields
+                    if (username.trim() === '') {
+                        document.getElementById('username').parentElement.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            document.getElementById('username').parentElement.style.animation = '';
+                        }, 500);
+                    }
+                    if (password.trim() === '') {
+                        document.getElementById('password').parentElement.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            document.getElementById('password').parentElement.style.animation = '';
+                        }, 500);
+                    }
+                    return;
+                }
+                
+                // Simulate login process
+                const loginBtn = document.querySelector('.login-btn');
+                loginBtn.innerHTML = 'Signing In...';
+                loginBtn.disabled = true;
+                
+                // Simulate API call
                 setTimeout(() => {
-                    passcodeInput.parentElement.style.animation = '';
-                }, 500);
-                passcodeInput.value = '';
-                passcodeInput.focus();
-            }
-        });
-
-        passcodeInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                loginForm.dispatchEvent(new Event('submit'));
-            }
-        });
-
-        window.addEventListener('load', () => {
-            passcodeInput.focus();
-        });
-
-        // Document gallery functionality
-        const gallery = document.getElementById('gallery');
-        const searchBox = document.getElementById('searchBox');
-        const fileTypeFilter = document.getElementById('fileTypeFilter');
-        const imageModal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        const pdfViewer = document.getElementById('pdfViewer');
-        const pdfError = document.getElementById('pdfError');
-        const modalClose = document.getElementById('modalClose');
-        const modalFileName = document.getElementById('modalFileName');
-        const modalDownload = document.getElementById('modalDownload');
-
-        // Document data - using your actual file names
-        const documents = [
-            // Image files
-            { id: 1, name: '3311 RC.jpg', thumbnail: '3311 RC.jpg', fullSize: '3311 RC.jpg', type: 'image' },
-            { id: 2, name: 'BANK PASSBOOK 01.jpg', thumbnail: 'BANK PASSBOOK 01.jpg', fullSize: 'BANK PASSBOOK 01.jpg', type: 'image' },
-            { id: 3, name: 'BKSPL0169A.jpg', thumbnail: 'BKSPL0169A.jpg', fullSize: 'BKSPL0169A.jpg', type: 'image' },
-            { id: 4, name: 'CLASS-10 MARKSHEET 01.jpg', thumbnail: 'CLASS-10 MARKSHEET 01.jpg', fullSize: 'CLASS-10 MARKSHEET 01.jpg', type: 'image' },
-            { id: 5, name: 'DAD AADHAR.jpg', thumbnail: 'DAD AADHAR.jpg', fullSize: 'DAD AADHAR.jpg', type: 'image' },
-            { id: 6, name: 'INCOME CERTIFICATE.jpg', thumbnail: 'INCOME CERTIFICATE.jpg', fullSize: 'INCOME CERTIFICATE.jpg', type: 'image' },
-            { id: 7, name: 'MUKESH BHAI PAN CARD.jpg', thumbnail: 'MUKESH BHAI PAN CARD.jpg', fullSize: 'MUKESH BHAI PAN CARD.jpg', type: 'image' },
-            { id: 8, name: 'OLD RATION CARD.jpg', thumbnail: 'OLD RATION CARD.jpg', fullSize: 'OLD RATION CARD.jpg', type: 'image' },
-            { id: 9, name: 'RATION CARD.jpg', thumbnail: 'RATION CARD.jpg', fullSize: 'RATION CARD.jpg', type: 'image' },
-            { id: 10, name: 'VILAS PANCARD.jpg', thumbnail: 'VILAS PANCARD.jpg', fullSize: 'VILAS PANCARD.jpg', type: 'image' },
-            { id: 11, name: 'VILAS PASSPORT PHOTO.jpg', thumbnail: 'VILAS PASSPORT PHOTO.jpg', fullSize: 'VILAS PASSPORT PHOTO.jpg', type: 'image' },
-            { id: 12, name: 'ZEEL LADANI AADHAR.jpg', thumbnail: 'ZEEL LADANI AADHAR.jpg', fullSize: 'ZEEL LADANI AADHAR.jpg', type: 'image' },
-            { id: 13, name: 'ZEEL LADANI DL.jpg', thumbnail: 'ZEEL LADANI DL.jpg', fullSize: 'ZEEL LADANI DL.jpg', type: 'image' },
-            { id: 14, name: 'ZEEL PASSPORT PHOTO.jpg', thumbnail: 'ZEEL PASSPORT PHOTO.jpg', fullSize: 'ZEEL PASSPORT PHOTO.jpg', type: 'image' },
-            
-            // PDF files
-            { id: 15, name: 'ZEEL LADANI AADHAR.pdf', thumbnail: '', fullSize: 'ZEEL LADANI AADHAR.pdf', type: 'pdf' }
-        ];
-
-        let filteredDocuments = [...documents];
-        let currentFilter = 'all';
-
-        function loadDocuments() {
-            gallery.innerHTML = '';
-            
-            // Apply filters
-            let displayDocuments = filteredDocuments;
-            if (currentFilter !== 'all') {
-                displayDocuments = filteredDocuments.filter(doc => doc.type === currentFilter);
-            }
-            
-            if (displayDocuments.length === 0) {
-                gallery.innerHTML = '<div class="empty-state">No documents found matching your search.</div>';
-                return;
-            }
-            
-            displayDocuments.forEach(doc => {
-                const card = document.createElement('div');
-                card.className = 'document-card';
-                
-                const fileExt = doc.name.split('.').pop().toUpperCase();
-                
-                let thumbnailHTML = '';
-                if (doc.type === 'pdf') {
-                    thumbnailHTML = `
-                        <div class="pdf-thumbnail">
-                            <div class="pdf-icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <div class="pdf-text">PDF Document</div>
-                        </div>
-                        <div class="file-badge">PDF</div>
-                    `;
-                } else {
-                    thumbnailHTML = `
-                        <img src="${doc.thumbnail}" alt="${doc.name}" class="thumbnail" loading="lazy" onerror="handleImageError(this, '${fileExt}')">
-                        <div class="file-badge">${fileExt}</div>
-                    `;
-                }
-                
-                card.innerHTML = `
-                    <div class="thumbnail-container">
-                        ${thumbnailHTML}
-                    </div>
-                    <div class="tooltip">${doc.name}</div>
-                    <div class="document-info">
-                        <div class="document-name">${doc.name}</div>
-                        <div class="document-actions">
-                            <button class="action-btn view-btn" data-id="${doc.id}">
-                                <i class="fas fa-eye"></i> View
-                            </button>
-                            <button class="action-btn download-btn" data-id="${doc.id}">
-                                <i class="fas fa-download"></i> Get
-                            </button>
-                        </div>
-                    </div>
-                `;
-                
-                gallery.appendChild(card);
-            });
-
-            // Add event listeners
-            document.querySelectorAll('.view-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const docId = e.currentTarget.getAttribute('data-id');
-                    const doc = documents.find(d => d.id == docId);
-                    if (doc) {
-                        openDocumentModal(doc);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.download-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const docId = e.currentTarget.getAttribute('data-id');
-                    const doc = documents.find(d => d.id == docId);
-                    if (doc) {
-                        downloadDocument(doc);
-                    }
-                });
-            });
-        }
-
-        function handleImageError(img, fileExt) {
-            img.style.display = 'none';
-            const container = img.parentElement;
-            container.innerHTML = `
-                <div class="pdf-thumbnail" style="background: linear-gradient(135deg, #4285f4, #34a853);">
-                    <div class="pdf-icon">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <div class="pdf-text">Image</div>
-                </div>
-                <div class="file-badge">${fileExt}</div>
-            `;
-        }
-
-        function openDocumentModal(doc) {
-            // Reset all modal content
-            modalImg.style.display = 'none';
-            pdfViewer.style.display = 'none';
-            pdfError.style.display = 'none';
-            
-            modalFileName.textContent = doc.name;
-            modalDownload.onclick = () => downloadDocument(doc);
-            
-            if (doc.type === 'pdf') {
-                // Try to display PDF, but handle errors gracefully
-                pdfViewer.style.display = 'block';
-                pdfViewer.src = doc.fullSize;
-                
-                // Check if PDF loads successfully
-                pdfViewer.onload = () => {
-                    pdfError.style.display = 'none';
-                };
-                
-                pdfViewer.onerror = () => {
-                    pdfViewer.style.display = 'none';
-                    pdfError.style.display = 'block';
-                };
-            } else {
-                // Display image
-                modalImg.style.display = 'block';
-                modalImg.src = doc.fullSize;
-                modalImg.alt = doc.name;
-                
-                // Handle image loading errors
-                modalImg.onerror = () => {
-                    modalImg.style.display = 'none';
-                    pdfError.style.display = 'block';
-                    pdfError.innerHTML = `
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; color: #ff6b6b;"></i>
-                        <h3>Image Not Available</h3>
-                        <p>The image file cannot be displayed.</p>
-                        <p>Please use the "Download Original" button to view the file.</p>
-                    `;
-                };
-            }
-            
-            imageModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Search functionality
-        searchBox.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            filteredDocuments = documents.filter(doc => 
-                doc.name.toLowerCase().includes(searchTerm)
-            );
-            loadDocuments();
-        });
-
-        // File type filter functionality
-        fileTypeFilter.addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-btn')) {
-                // Update active button
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                e.target.classList.add('active');
-                
-                // Apply filter
-                currentFilter = e.target.getAttribute('data-filter');
-                loadDocuments();
-            }
-        });
-
-        // Download document function with better error handling
-        function downloadDocument(doc) {
-            const a = document.createElement('a');
-            a.href = doc.fullSize;
-            a.download = doc.name;
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            
-            // Add error handling for download
-            a.onerror = () => {
-                alert(`Unable to download "${doc.name}". The file may not exist or may be in a different location.`);
-            };
-            
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        // Close modal
-        modalClose.addEventListener('click', () => {
-            closeModal();
-        });
-
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal) {
-                closeModal();
-            }
-        });
-
-        function closeModal() {
-            imageModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            pdfViewer.src = '';
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Handle orientation change
-        window.addEventListener('orientationchange', function() {
-            setTimeout(function() {
-                if (imageModal.style.display === 'flex') {
-                    imageModal.style.display = 'none';
+                    // Show success message
+                    successMessage.classList.add('active');
+                    
+                    // Reset form after delay
                     setTimeout(() => {
-                        imageModal.style.display = 'flex';
-                    }, 10);
+                        loginForm.reset();
+                        successMessage.classList.remove('active');
+                        loginBtn.innerHTML = 'Sign In';
+                        loginBtn.disabled = false;
+                        
+                        // Remove focused class from inputs
+                        inputs.forEach(input => {
+                            input.parentElement.classList.remove('focused');
+                        });
+                    }, 3000);
+                }, 1500);
+            });
+            
+            // Add shake animation for invalid fields
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
                 }
-            }, 300);
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
